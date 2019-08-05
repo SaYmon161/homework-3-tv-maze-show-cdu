@@ -9,11 +9,13 @@ class Show extends Component {
   };
 
   async componentDidUpdate() {
-    if (this.props.showId === this.state.showId) return;
-    const data = await getShowInfo(this.props.showId);
+    const { showId: propShowId } = this.props;
+    const { showId: stateShowId } = this.state;
+    if (propShowId === stateShowId) return;
+    const data = await getShowInfo(propShowId);
     this.setState({
       data,
-      showId: this.props.showId
+      showId: propShowId
     });
   }
   getImg(name) {
